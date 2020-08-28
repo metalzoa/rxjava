@@ -5,12 +5,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ToDoSample {
     public static void main(String[] args) throws InterruptedException {
-        Observable.just(100, 200, 300, 400, 500)
+        Observable.just(100, 200, 300, 400, 500) // data 발행
                 .doOnNext(data -> System.out.println(getThreadName() + " : " + "#doOnNext() : " + data))
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.computation())
                 .filter(number -> number > 300)
-                .subscribe(num -> System.out.println(getThreadName() + " : result : " + num));
+                .subscribe(num -> System.out.println(getThreadName() + " : result : " + num)); // 데이터 구독 해서 처리
 
         Thread.sleep(500);
     }
